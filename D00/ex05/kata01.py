@@ -7,5 +7,5 @@ if __name__ == '__main__':
         'Ruby': 'Yukihiro Matsumoto',
         'PHP': 'Rasmus Lerdorf',
     }
-    for language in languages:
-        print("%s was created by %s" % (language, languages[language]))
+    for language, creator in languages.items():
+        print("%s was created by %s" % (language, creator))
