@@ -12,7 +12,8 @@ class Book:
     def __init__(
         self,
         name=str(),
-        last_update=datetime(), creation_date=datetime(),
+        last_update=datetime(),
+        creation_date=datetime(),
         recipes_list=dict()):
         pass
 
