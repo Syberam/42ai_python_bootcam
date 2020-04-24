@@ -156,5 +156,3 @@ if __name__ == '__main__':
     while (choice != 5):
         functions(choice)()
         choice = get_choice(choice)
-
-
