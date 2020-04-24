@@ -2,11 +2,6 @@
 import sys
 import traceback
 
-# def ft_map(function_to_apply, list_of_inputs):
-# pass
-# def ft_reduce(function_to_apply, list_of_inputs):
-# pass
-
 
 def ft_filter(function_to_apply, list_of_inputs):
     if not list_of_inputs:
