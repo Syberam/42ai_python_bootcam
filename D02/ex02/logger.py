@@ -14,11 +14,12 @@ def log(function):
             exec_time_str = "{:.3f} s ".format(exec_time)
         else:
             exec_time_str = "{:.3f} ms".format(exec_time * 1000)
-        print("({})Running: {:<20} [ exec-time = {} ]".format(
-            getpass.getuser(),
-            function.__name__,
-            exec_time_str
-        ))
+        with open('machine.log', 'a+') as f:
+            f.write("({})Running: {:<20} [ exec-time = {} ]\n".format(
+                getpass.getuser(),
+                ' '.join(w.capitalize() for w in function.__name__.split('_')),
+                exec_time_str
+            ))
         return ret
     return wrapper
 
