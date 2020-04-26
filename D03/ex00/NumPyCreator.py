@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import numpy as np
 
 
@@ -5,43 +6,52 @@ class NumPyCreator:
     def __init__(self):
         pass
 
-    def from_list(lst):
+    def from_list(self, lst):
         """takes in a list and returns its corresponding NumPy array."""
-        return np.matric(lst)
+        return np.array(lst)
 
-    def from_tuple(tpl):
+    def from_tuple(self, tpl):
         """takes in a tuple and returns its corresponding NumPy array."""
-        pass
+        return np.array(tpl)
 
-    def from_iterable(itr):
+    def from_iterable(self, itr, dtype=None):
         """takes in an iterable and returns an array which contains all of its
         elements."""
-        pass
+        return np.fromiter(itr, dtype)
 
-    def from_shape(shape, value):
+    def from_shape(self, shape, value=0, dtype=None):
         """returns an array filled with the same value.
         The first argument is a tuple which specifies the shape of the array,
         and the second argument specifies the value of all the elements. This
         value must be 0 by default."""
-        pass
+        return np.full(shape, value, dtype)
 
-    def random(shape):
+    def random(self, shape):
         """returns an array filled with random values.
         It takes as an argument a tuple which specifies the shape of the
         array."""
-        pass
+        return np.random.rand(*shape)
 
-    def identity(n):
+    def identity(self, n, dtype=None):
         """returns an array representing the identity matrix of size n."""
-        pass
+        return np.identity(n, dtype)
 
 
 if __name__ == "__main__":
     npc = NumPyCreator()
-    print(npc.from_list([[1, 2, 3], [6, 3, 4]]))
-    print(npc.from_tuple(("a", "b", "c")))
-    print(npc.from_iterable(range(5)))
+    mat = npc.from_list([[1, 2, 3], [6, 3, 4]])
+    print("{}({})".format(type(mat), mat))
+    mat = npc.from_tuple(("a", "b", "c"))
+    print("{}({})".format(type(mat), mat))
+    mat = npc.from_iterable(range(5))
+    print("{}({})".format(type(mat), mat))
     shape = (3, 5)
-    print(npc.from_shape(shape))
-    print(npc.random(shape))
-    print(npc.identity(4))
+    mat = npc.from_shape(shape)
+    print("{}({})".format(type(mat), mat))
+    mat = npc.random(shape)
+    print("{}({})".format(type(mat), mat))
+    mat = npc.identity(4)
+    print("{}({})".format(type(mat), mat))
+    mat = npc.identity(4, int)
+    print("{}({})".format(type(mat), mat))
+
