@@ -54,4 +54,3 @@ if __name__ == "__main__":
     print("{}({})".format(type(mat), mat))
     mat = npc.identity(4, int)
     print("{}({})".format(type(mat), mat))
-
