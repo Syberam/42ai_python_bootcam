@@ -1,5 +1,0 @@
-1. pip freeze
-2. pip list -o
-3. pip show numpy
-4. pip search tesseract | egrep "^.*tesseract.*- "
-5. ./requirements.txt
