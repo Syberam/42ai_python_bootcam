@@ -2,6 +2,15 @@
 import numpy as np
 
 
+def add_intercept(x):
+    if not isinstance(x, np.ndarray) or x.size == 0:
+        return None
+    if len(x.shape) == 1:
+        return np.array([[1, xi] for xi in x], dtype=float)
+    ones = np.ones(x.shape[0], dtype=float)
+    return np.array(np.insert(x, 0, ones, axis=1), dtype=float)
+
+
 def predict_(x, theta):
     """Computes the vector of prediction y_hat from two non-empty numpy.ndarray.
     Args:
@@ -18,7 +27,7 @@ def predict_(x, theta):
         return None
     if not isinstance(theta, np.ndarray) or theta.shape[0] != 2:
         return None
-    x = np.array([[1, xi] for xi in x], dtype=float)
+    x = add_intercept(x)
     return np.dot(x, theta)
 
 
