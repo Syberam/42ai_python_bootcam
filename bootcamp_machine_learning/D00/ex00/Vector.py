@@ -53,14 +53,51 @@ class Vector:
 
     def __truediv__(self, other):
         """div : only scalars."""
-        pass
+        if type(other) != type(self):
+            raise ValueError("need to be vector type")
+        if self.size == other.size:
+            return Vector(
+                [a / b for a, b in zip(self.values, other.values)],
+                self.size
+            )
+        elif other.size == 1:
+            return Vector(
+                [a / other.values[0] for a in self.values],
+                self.size
+            )
+        elif self.size == 1:
+            return Vector(
+                [self.values[0] / b for b in other.values],
+                other.size
+            )
+        else:
+            raise ValueError("Required same dimension vectors or scalar")
 
     def __rtruediv__(self, other):
-        pass
+        if type(other) != type(self):
+            raise ValueError("need to be vector type")
+        if self.size == other.size:
+            return Vector(
+                [a / b for a, b in zip(other.values, self.values)],
+                self.size
+            )
+        elif other.size == 1:
+            return Vector(
+                [other.values[0] / a for a in self.values],
+                self.size
+            )
+        elif self.size == 1:
+            return Vector(
+                [b / self.values[0] for b in other.values],
+                other.size
+            )
+        else:
+            raise ValueError("Required same dimension vectors or scalar")
 
     def __mul__(self, other):
         """mul : scalars and vectors, can have errors with vectors,
         return a scalar if we perform Vector * Vector (dot product)"""
+
         pass
 
     def __rmul__(self, other):
