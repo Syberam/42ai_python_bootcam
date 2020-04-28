@@ -14,7 +14,7 @@ def simple_predict(x, theta):
     None if x or theta dimensions are not appropriate.
     Raises:
     This function should not raise any Exception."""
-    return np.array([float(theta[0] + theta[1] * xi) for xi in x])
+    return np.array([theta[0] + theta[1] * xi for xi in x], dtype=float)
 
 
 if __name__ == "__main__":
