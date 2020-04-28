@@ -48,7 +48,8 @@ def cost_elem_(y, y_hat):
     """
     if not are_good_args(y, y_hat):
         return None
-    m = y.shape[0]
+    m = y_hat.shape[0]
+    print(m)
     return np.array(
         [1 / (2 * m) * (yi_ - yi) ** 2 for yi_, yi in zip(y_hat, y)]
     )
@@ -70,7 +71,7 @@ def cost_(y, y_hat):
     """
     if y.shape != y_hat.shape:
         y_hat = y_hat.flatten()
-        return np.sum(cost_elem_(y, y_hat)) * 2 # try it and works... why ?
+        return np.sum(cost_elem_(y, y_hat)) * 2  # try it and it works... why ?
     return np.sum(cost_elem_(y, y_hat))
 
 
