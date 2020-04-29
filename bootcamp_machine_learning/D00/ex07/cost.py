@@ -69,6 +69,10 @@ def cost_(y, y_hat):
     Raises:
     This function should not raise any Exception.
     """
+    # if len(y.shape) == 1:
+    #     y = np.array([[yi] for yi in y])
+    # if len(y_hat.shape) == 1:
+    #     y_hat = np.array([[y_hati] for y_hati in y_hat])
     if y.shape != y_hat.shape:
         y_hat = y_hat.flatten()
         return np.sum(cost_elem_(y, y_hat)) * 2  # try it and it works... why ?

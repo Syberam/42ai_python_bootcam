@@ -15,7 +15,7 @@ def are_good_args(x, y, theta):
     return True
 
 
-def predict_(x, theta):
+def predict(x, theta):
     """Computes the vector of prediction y_hat from two non-empty
     numpy.ndarray.
     Args:

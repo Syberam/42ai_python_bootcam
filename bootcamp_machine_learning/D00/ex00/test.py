@@ -5,6 +5,21 @@ from Vector import Vector
 def math_methods_tests():
     mm_test_add()
     mm_test_sub()
+    mm_test_div()
+
+
+def mm_test_div():
+    v1 = Vector([1, 2, 3, 4, 5])
+    v2 = Vector([5, 4, 3, 2, 1])
+    print(repr(v1))
+    print(repr(v2))
+    v3 = v1 / v2
+    print(repr(v3))
+    scalar = Vector([3])
+    v4 = v1 / scalar
+    print(v4)
+    v5 = scalar / v1
+    print(v5)
 
 
 def mm_test_add():
