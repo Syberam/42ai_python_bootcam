@@ -60,7 +60,7 @@ def simple_gradient(x, y, theta):
 
 def forumla(x, y, theta, j):
     return theta[j] - (1 / x.shape[0]) * np.sum(
-        (predict_(x, theta) - y) * (x if j == 1 else 1))
+        (predict_(x, theta) - y) * (1 if j == 0 else x))
 
 
 if __name__ == '__main__':
