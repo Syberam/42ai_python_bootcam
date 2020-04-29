@@ -55,10 +55,7 @@ def simple_gradient(x, y, theta):
         return None
     if x.shape[0] != y.shape[0] or theta.shape[0] != 2:
         return None
-    return np.array([
-        forumla(x, y, theta, 0),
-        forumla(x, y, theta, 1)
-    ])
+    return np.array([forumla(x, y, theta, i) for i in range(2)])
 
 
 def forumla(x, y, theta, j):
