@@ -6,23 +6,12 @@ def add_intercept(x):
     if not isinstance(x, np.ndarray) or x.size == 0:
         return None
     if len(x.shape) == 1:
-        return np.array([[1, xi] for xi in x], dtype=float)
-    ones = np.ones(x.shape[0], dtype=float)
-    return np.array(np.insert(x, 0, ones, axis=1), dtype=float)
+        x = x.reshape(-1, 1)
+    ones = np.ones(x.shape[0], dtype=float).reshape(-1, 1)
+    return np.array(np.append(ones, x, axis=1), dtype=float)
 
 
 def predict_(x, theta):
-    """Computes the vector of prediction y_hat from two non-empty numpy.ndarray.
-    Args:
-    x: has to be an numpy.ndarray, a vector of dimension m * 1.
-    theta: has to be an numpy.ndarray, a vector of dimension 2 * 1.
-    Returns:
-    y_hat as a numpy.ndarray, a vector of dimension m * 1.
-    None if x or theta are empty numpy.ndarray.
-    None if x or theta dimensions are not appropriate.
-    Raises:
-    This function should not raise any Exceptions.
-    """
     if not isinstance(x, np.ndarray) or len(x.shape) != 1:
         return None
     if not isinstance(theta, np.ndarray) or theta.shape[0] != 2:
@@ -31,18 +20,17 @@ def predict_(x, theta):
     return np.dot(x, theta)
 
 
-def simple_gradient(x, y, theta):
+def gradient(x, y, theta):
     """Computes a gradient vector from three non-empty numpy.ndarray, without
-    any for-loop.
+    any for loop.
     ,→ The three arrays must have compatible dimensions.
     Args:
-    x: has to be an numpy.ndarray, a vector of dimension m * 1.
-    y: has to be an numpy.ndarray, a vector of dimension m * 1.
-    11
-    theta: has to be an numpy.ndarray, a 2 * 1 vector.
+    x: has to be a numpy.ndarray, a matrix of dimension m * 1.
+    y: has to be a numpy.ndarray, a vector of dimension m * 1.
+    theta: has to be a numpy.ndarray, a 2 * 1 vector.
     Returns:
     The gradient as a numpy.ndarray, a vector of dimension 2 * 1.
-    None if x, y, or theta are empty numpy.ndarray.
+    None if x, y, or theta is an empty numpy.ndarray.
     None if x, y and theta do not have compatible dimensions.
     Raises:
     This function should not raise any Exception.
@@ -62,8 +50,8 @@ def forumla(x, y, theta):
     # ∆(J) = (1 / m)X'T(X'∂-y)
     return (
         (1 / x.shape[0])
-        * add_intercept(x).transpose()
-        * (predict_(x, theta) - y)
+        * add_intercept(x).T
+        . abs(predict_(x, theta) - y)
     )
 
 
@@ -72,11 +60,11 @@ if __name__ == '__main__':
     y = np.array([37.4013816, 36.1473236, 45.7655287, 46.6793434, 59.5585554])
     # Example 0:
     theta1 = np.array([2, 0.7])
-    print(simple_gradient(x, y, theta1))
+    print(gradient(x, y, theta1))
     # Output:
     # array([21.0342574, 587.36875564])
     # Example 1:
     theta2 = np.array([1, -0.4])
-    print(simple_gradient(x, y, theta2))
+    print(gradient(x, y, theta2))
     # Output:
     # array([58.86823748, 2229.72297889])
