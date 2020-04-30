@@ -43,16 +43,16 @@ def gradient(x, y, theta):
         return None
     if x.shape[0] != y.shape[0] or theta.shape[0] != 2:
         return None
-    return np.array([np.sum(x) for x in forumla(x, y, theta)])
+    return np.array([theta[j] - np.sum(x) for x, j
+                    in zip(forumla(x, y, theta), range(2))])
 
 
 def forumla(x, y, theta):
     # ∆(J) = (1 / m)X'T(X'∂-y)
-    return (
-        (1 / x.shape[0])
-        * add_intercept(x).T
-        . abs(predict_(x, theta) - y)
-    )
+    return ((1 / x.shape[0])
+            * add_intercept(x).T
+            * (predict_(x, theta) - y)
+            )
 
 
 if __name__ == '__main__':
