@@ -55,12 +55,12 @@ def simple_gradient(x, y, theta):
         return None
     if x.shape[0] != y.shape[0] or theta.shape[0] != 2:
         return None
-    return forumla(x, y, theta)
+    return np.array([np.sum(x) for x in forumla(x, y, theta)])
 
 
 def forumla(x, y, theta):
     # ∆(J) = (1 / m)X'T(X'∂-y)
-    return np.sum(
+    return (
         (1 / x.shape[0])
         * add_intercept(x).transpose()
         * (predict_(x, theta) - y)
